@@ -45,7 +45,7 @@ final class PortWatchViewModel: ObservableObject {
 
     private var refreshInterval: TimeInterval {
         if isPanelVisible {
-            return 3
+            return 5
         }
 
         if ProcessInfo.processInfo.isLowPowerModeEnabled {

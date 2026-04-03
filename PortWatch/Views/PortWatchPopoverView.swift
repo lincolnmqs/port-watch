@@ -218,7 +218,7 @@ struct PortWatchPopoverView: View {
                 .font(.system(size: 10, design: .monospaced))
                 .foregroundStyle(.white.opacity(0.18))
 
-            Text("auto · 3s")
+            Text("auto · 5s")
                 .font(.system(size: 10, design: .monospaced))
                 .foregroundStyle(.white.opacity(0.18))
         }
