@@ -14,11 +14,22 @@ struct PortRowView: View {
     let showCommandAction: () -> Void
 
     @State private var showNewFlash = false
+    @State private var isPulsing = false
 
     var body: some View {
         HStack(spacing: 12) {
             VStack(alignment: .leading, spacing: 3) {
                 HStack(spacing: 6) {
+                    Circle()
+                        .fill(Color.green)
+                        .frame(width: 6, height: 6)
+                        .scaleEffect(isPulsing ? 1.35 : 1.0)
+                        .opacity(isPulsing ? 0.4 : 1.0)
+                        .animation(
+                            .easeInOut(duration: 1.5).repeatForever(autoreverses: true),
+                            value: isPulsing
+                        )
+
                     Text(service.primaryName)
                         .font(.system(size: 13, weight: .medium))
                         .foregroundStyle(.white)
@@ -111,6 +122,7 @@ struct PortRowView: View {
             Button("Force Kill", role: .destructive, action: forceKillAction)
         }
         .onAppear {
+            isPulsing = true
             if isNew {
                 showNewFlash = true
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
