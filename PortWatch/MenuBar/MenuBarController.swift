@@ -9,6 +9,7 @@ final class MenuBarController: ObservableObject {
     let viewModel: PortWatchViewModel
     private var statusItem: NSStatusItem!
     private var panel: MenuBarPanel?
+    private var settingsPanel: NSPanel?
     private var statusMenu: NSMenu?
     private var cancellables: Set<AnyCancellable> = []
     private var localMonitor: Any?
@@ -57,6 +58,7 @@ final class MenuBarController: ObservableObject {
 
         let menu = NSMenu()
         menu.addItem(NSMenuItem(title: "Open PortWatch", action: #selector(openFromMenu), keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "Settings", action: #selector(openSettings), keyEquivalent: ","))
         menu.addItem(.separator())
         menu.addItem(NSMenuItem(title: "Quit PortWatch", action: #selector(quitApp), keyEquivalent: "q"))
         menu.items.forEach { $0.target = self }
@@ -73,7 +75,9 @@ final class MenuBarController: ObservableObject {
     }
 
     private func setupPanel() {
-        let contentView = PortWatchPopoverView(viewModel: viewModel)
+        let contentView = PortWatchPopoverView(viewModel: viewModel, onOpenSettings: { [weak self] in
+            self?.openSettings()
+        })
             .padding(8)
             .background(
                 RoundedRectangle(cornerRadius: 14, style: .continuous)
@@ -114,6 +118,35 @@ final class MenuBarController: ObservableObject {
         }
 
         togglePopover(sender)
+    }
+
+    @objc func openSettings() {
+        if let existing = settingsPanel, existing.isVisible {
+            existing.makeKeyAndOrderFront(nil)
+            NSApp.activate(ignoringOtherApps: true)
+            return
+        }
+
+        let settingsView = SettingsView { [weak self] in
+            self?.settingsPanel?.orderOut(nil)
+            self?.settingsPanel = nil
+        }
+
+        let panel = NSPanel(
+            contentRect: NSRect(x: 0, y: 0, width: 340, height: 220),
+            styleMask: [.titled, .closable, .fullSizeContentView],
+            backing: .buffered,
+            defer: false
+        )
+        panel.title = "Settings"
+        panel.titlebarAppearsTransparent = true
+        panel.isReleasedWhenClosed = false
+        panel.center()
+        panel.level = .floating
+        panel.contentViewController = NSHostingController(rootView: settingsView)
+        panel.makeKeyAndOrderFront(nil)
+        NSApp.activate(ignoringOtherApps: true)
+        settingsPanel = panel
     }
 
     @objc private func openFromMenu() {
