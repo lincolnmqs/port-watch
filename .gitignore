@@ -23,6 +23,7 @@ DerivedData
 
 # Swift Package Manager
 .build/
+build/
 
 # Carthage
 Carthage/Build/
@@ -35,8 +36,7 @@ fastlane/test_output
 
 # Project specific artifacts
 release/
-
-# Docs
+dist/
 docs/
 
 # Claude
