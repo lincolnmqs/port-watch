@@ -23,6 +23,7 @@
 		A1000000000000000000000F /* SessionSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000011 /* SessionSnapshot.swift */; };
 		A10000000000000000000010 /* SnapshotStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000012 /* SnapshotStore.swift */; };
 		A10000000000000000000011 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000013 /* AppSettings.swift */; };
+		A10000000000000000000012 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000014 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		A20000000000000000000011 /* SessionSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSnapshot.swift; sourceTree = "<group>"; };
 		A20000000000000000000012 /* SnapshotStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotStore.swift; sourceTree = "<group>"; };
 		A20000000000000000000013 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		A20000000000000000000014 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 				A20000000000000000000007 /* PortWatchPopoverView.swift */,
 				A20000000000000000000008 /* PortRowView.swift */,
 				A20000000000000000000009 /* EmptyStateView.swift */,
+				A20000000000000000000014 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				A10000000000000000000006 /* PortWatchViewModel.swift in Sources */,
 				A10000000000000000000008 /* PortRowView.swift in Sources */,
 				A10000000000000000000011 /* AppSettings.swift in Sources */,
+				A10000000000000000000012 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
