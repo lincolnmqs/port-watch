@@ -2,6 +2,7 @@ import SwiftUI
 
 struct PortWatchPopoverView: View {
     @ObservedObject var viewModel: PortWatchViewModel
+    let onOpenSettings: () -> Void
     @State private var appeared = false
 
     var body: some View {
@@ -101,6 +102,16 @@ struct PortWatchPopoverView: View {
                     .padding(.trailing, 6)
                     .transition(.opacity)
             }
+
+            Button {
+                onOpenSettings()
+            } label: {
+                Image(systemName: "gearshape")
+                    .font(.system(size: 12, weight: .medium))
+                    .foregroundStyle(.white.opacity(0.45))
+            }
+            .buttonStyle(.plain)
+            .help("Settings")
 
             Button {
                 viewModel.refresh()
