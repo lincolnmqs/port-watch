@@ -38,3 +38,6 @@ release/
 
 # Docs
 docs/
+
+# Claude
+.claude/

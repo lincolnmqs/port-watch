@@ -4,9 +4,10 @@ import ServiceManagement
 final class AppSettings: ObservableObject {
     static let shared = AppSettings()
 
-    @AppStorage("launchAtLogin") var launchAtLogin: Bool = false {
+    @Published var launchAtLogin: Bool = UserDefaults.standard.bool(forKey: "launchAtLogin") {
         didSet {
             guard oldValue != launchAtLogin else { return }
+            UserDefaults.standard.set(launchAtLogin, forKey: "launchAtLogin")
             applyLaunchAtLogin(launchAtLogin)
         }
     }
